@@ -1,17 +1,17 @@
-const http = require('http')
+const express = require('express')
+const cors = require('cors')
+const app = express()
 
-const endpoint = {
-    slackUsername: "Sokooya",
-     Backend: true,
-     Age: 18,
-     Bio: "I am a backend developer hoping to hone my skills"
-}
-const requestHandler = (req, res) => {
-    res.end(JSON.stringify(endpoint))
-}
+app.use(cors())
 
-const server = http.createServer(requestHandler)
-
-server.listen(3000, () =>{
-    console.log('Port started at port 3000')
+app.get("/", (req, res) =>{
+    res.json({
+        slackUsername: "Sokooya",
+        backend: true,
+        age: 18,
+        bio: "I am a backend developer hoping to hone my skills"
+    })
+})
+app.listen(3000, () =>{
+    console.log("Started at port 3000")
 })
